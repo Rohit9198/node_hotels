@@ -42,7 +42,7 @@ router.get('/:workType', async (req, res) =>{
         res.status(404).json({error: 'Inavalid work type'});
     }
 
-    }catch{
+    }catch(err){
         console.log(err);
         res.status(500).json({error:'Internal server error'});
     }
@@ -53,7 +53,7 @@ router.put('/:id', async(req, res) =>{
     try{
       const personID = req.params.id;
       const updatePersonData = req.body;
-      const response = await person.findByIdUpdate(personID, updatedPersonData,{
+      const response = await Person.findByIdUpdate(personID, updatedPersonData,{
         new: true,
         runValidators: true,
       })
